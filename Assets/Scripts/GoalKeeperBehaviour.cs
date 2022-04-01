@@ -16,6 +16,7 @@ public class GoalKeeperBehaviour : MonoBehaviour
     [SerializeField] private float changePositionSpeed;
     [SerializeField] private string fieldTag;
     [SerializeField] private Vector3 initialDirection;
+    [SerializeField] private float ballKickForce;
 
     private Rigidbody _rigidbody;
     private bool _jumping;
@@ -176,6 +177,11 @@ public class GoalKeeperBehaviour : MonoBehaviour
         if (other.gameObject.CompareTag(fieldTag))
         {
             _inAir = false;
+        } 
+        else if (other.gameObject.GetComponent<BallBehaviour>() != null)
+        {
+            Rigidbody ballRigidbody = other.gameObject.GetComponent<Rigidbody>();
+            ballRigidbody.AddForce(transform.forward.normalized * ballKickForce);
         }
     }
 

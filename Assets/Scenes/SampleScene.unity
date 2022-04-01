@@ -912,7 +912,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goalCenter: {x: -3, y: 1}
-  maxProtectingRadius: 4
+  maxProtectingRadius: 3
   idleRadius: 2
   idleSpeed: 2
   jumpSpeed: 3
@@ -921,6 +921,7 @@ MonoBehaviour:
   changePositionSpeed: 6
   fieldTag: Field
   initialDirection: {x: 1, y: 0, z: 0}
+  ballKickForce: 80
 --- !u!54 &1017142533
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1007,13 +1008,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1017142531}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -3, y: 1.09, z: 1}
   m_LocalScale: {x: 0.4, y: 0.6, z: 0.4}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &1459287043
 GameObject:
   m_ObjectHideFlags: 0
