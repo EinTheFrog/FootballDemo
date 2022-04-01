@@ -21,27 +21,34 @@ public class BallBehaviour : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     [SerializeField] private float maxForce = 400.0f;
 
     public bool isValid = true;
-
-    private Rigidbody _rigidbody;
-    private float _holdStartTime;
-    private Camera _camera;
-    private bool _isKicked;
+    
     private static readonly int ShaderDeltaTime = Shader.PropertyToID("_DeltaTime");
     private static readonly int ShaderForceMult = Shader.PropertyToID("_ForceMult");
     private static readonly int ShaderForceExpStart = Shader.PropertyToID("_ForceExpStart");
     private static readonly int ShaderMinForce = Shader.PropertyToID("_MinForce");
     private static readonly int ShaderMaxForce = Shader.PropertyToID("_MaxForce");
 
+    private Rigidbody _rigidbody;
+    private float _holdStartTime;
+    private Camera _camera;
+    private bool _isKicked;
+    private float _speedToFlyOverGoalKeeper;
+    private const float g = 9.8f;
+
     private void Start()
     {
-        _rigidbody = GetComponent<Rigidbody>();
-        _camera = FindObjectOfType<Camera>();
-        _isKicked = false;
         forcePanel.material.SetFloat(ShaderForceMult, forceTimeMult);
         forcePanel.material.SetFloat(ShaderForceExpStart, forceExpStart);
         forcePanel.material.SetFloat(ShaderMinForce, minForce);
         forcePanel.material.SetFloat(ShaderMaxForce, maxForce);
         forcePanel.gameObject.SetActive(false);
+        
+        _rigidbody = GetComponent<Rigidbody>();
+        _camera = FindObjectOfType<Camera>();
+        _isKicked = false;
+
+        float h = goalKeeper.GetComponent<Collider>().bounds.size.y * 0.5f;
+        _speedToFlyOverGoalKeeper = Mathf.Sqrt(2 * g * h);
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -84,6 +91,7 @@ public class BallBehaviour : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
     private void OnCollisionExit(Collision other)
     {
+        if (_rigidbody.velocity.y < _speedToFlyOverGoalKeeper) return;
         if (other.gameObject.CompareTag(fieldTag) && _isKicked)
         {
             goalKeeper.StartJumping();

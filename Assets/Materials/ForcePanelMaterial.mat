@@ -59,7 +59,7 @@ Material:
     - _BumpScale: 1
     - _ColorBorder: 0.83
     - _Cutoff: 0.5
-    - _DeltaTime: 3.0922546
+    - _DeltaTime: 2.990776
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _ForceExpStart: 3

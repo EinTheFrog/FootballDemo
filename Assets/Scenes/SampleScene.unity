@@ -916,8 +916,8 @@ MonoBehaviour:
   idleRadius: 2
   idleSpeed: 2
   jumpSpeed: 3
-  protectingRadius: 0.2
-  protectingSpeed: 2
+  protectingRadius: 0.4
+  protectingSpeed: 3
   changePositionSpeed: 6
   fieldTag: Field
   initialDirection: {x: 1, y: 0, z: 0}
