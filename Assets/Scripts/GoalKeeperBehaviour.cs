@@ -41,7 +41,7 @@ public class GoalKeeperBehaviour : MonoBehaviour
         _oldVelocity = initialDirection * idleSpeed;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         UpdateMovement();
     }
